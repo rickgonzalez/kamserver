@@ -1,6 +1,6 @@
 import { Room, Client} from "@colyseus/core";
 import { MyRoomState } from "./schema/MyRoomState";
-
+const requestIp = require('request-ip');
 
 export class MyRoom extends Room<MyRoomState> {
   maxClients = 4;
@@ -15,9 +15,9 @@ export class MyRoom extends Room<MyRoomState> {
     });
   }
  onAuth (client: Client, options: any, request: any ) {
-      var clientIp;
-      request.socket.remoteAddress ? clientIp = request.socket.remoteAddress : clientIp = request.headers['x-forwarded-for'];
+     // request.socket.remoteAddress ? clientIp = request.socket.remoteAddress : clientIp = request.headers['x-forwarded-for'];
     
+     const clientIp = requestIp.getClientIp(request); 
       client.send("ip", clientIp);
       console.log('request ip-->',clientIp);
       return true;
