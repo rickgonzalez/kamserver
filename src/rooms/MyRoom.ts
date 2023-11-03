@@ -1,6 +1,6 @@
-import { Room, Client } from "@colyseus/core";
+import { Room, Client} from "@colyseus/core";
 import { MyRoomState } from "./schema/MyRoomState";
-import { request } from "express";
+import { Request } from "express";
 
 export class MyRoom extends Room<MyRoomState> {
   maxClients = 4;
@@ -14,10 +14,15 @@ export class MyRoom extends Room<MyRoomState> {
       //
     });
   }
+ onAuth (client: Client, options: any, myrequest:Request ) {
+   
+    console.log("maybe an ip ", myrequest.ip );
+
+  }
 
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
-    console.log("maybe an ip", request.ip);
+  
 
   }
 
