@@ -7,7 +7,7 @@ export class MyRoom extends Room<MyRoomState> {
 
   onCreate (options: any) {
     this.setState(new MyRoomState());
-
+  
     this.onMessage("type", (client, message) => {
       //
       // handle "type" message
@@ -15,7 +15,9 @@ export class MyRoom extends Room<MyRoomState> {
     });
   }
  onAuth (client: Client, options: any, request: any ) {
-      const clientIp = request.socket.remoteAddress;
+      var clientIp;
+      request.socket.remoteAddress ? clientIp = request.socket.remoteAddress : clientIp = request.headers['x-forwarded-for'];
+    
       client.send("ip", clientIp);
       console.log('request ip-->',clientIp);
       return true;
