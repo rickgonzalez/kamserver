@@ -1,6 +1,8 @@
 import config from "@colyseus/tools";
 import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
+import { RelayRoom } from "colyseus";
+
 
 /**
  * Import your Room files
@@ -14,6 +16,11 @@ export default config({
          * Define your room handlers:
          */
         gameServer.define('my_room', MyRoom);
+        // Expose your relayed room
+        gameServer.define("Relay", RelayRoom, {
+            maxClients: 100,
+            allowReconnectionTime: 120
+        });
 
     },
 

@@ -16,6 +16,8 @@ export class MyRoom extends Room<MyRoomState> {
 
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
+    console.log(client.userData);
+
   }
 
   onLeave (client: Client, consented: boolean) {
