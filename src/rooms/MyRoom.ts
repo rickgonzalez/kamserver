@@ -15,10 +15,10 @@ export class MyRoom extends Room<MyRoomState> {
     });
   }
  onAuth (client: Client, options: any, request: any ) {
-      const mypassedrequest = request;
-      //client.send("ip", ipAddress);
-      console.log('request object -->', mypassedrequest);
-     // return true;
+      const clientIp = request.socket.remoteAddress;
+      client.send("ip", clientIp);
+      console.log('request ip-->',clientIp);
+      return true;
   }
 
   onJoin (client: Client, options: any) {
