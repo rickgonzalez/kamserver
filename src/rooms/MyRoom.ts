@@ -19,9 +19,9 @@ export class MyRoom extends Room<MyRoomState> {
     
      const clientIp = requestIp.getClientIp(request); 
       client.send("ip", clientIp);
-      console.log("socket",request.socket);
-      console.log("http -->",request.https);
-      console.log("full request -------->>>",request);
+    
+  
+      console.dir(request);
       console.log('request ip-->',clientIp);
       return true;
   }
