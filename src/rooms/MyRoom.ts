@@ -10,6 +10,8 @@ export class MyRoom extends Room<MyRoomState> {
   onCreate (options: any) {
     this.setState(new MyRoomState());
   
+
+
     this.onMessage("type", (client, message) => {
       //
       // handle "type" message
@@ -28,7 +30,7 @@ export class MyRoom extends Room<MyRoomState> {
 
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
-  
+    this.state.playerHost = client.id;
 
   }
 

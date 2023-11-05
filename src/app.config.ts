@@ -60,7 +60,7 @@ export default config({
 
         app.post('/rooms', (req, res) => {
             console.log(req);
-
+            
             res.send('processing');
           })
 
