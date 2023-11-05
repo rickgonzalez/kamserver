@@ -42,7 +42,7 @@ export default config({
         // Messaging                    message/rooms/{roomId}  /message/players/{playerId}
         
         app.get("/providers", async(req, res) => {
-            let providers =  JSON.parse(readFileSync('./components/providers.json', 'utf-8'));
+            let providers =  JSON.parse('./components/providers.json');
             res.send(providers);
         });
 
