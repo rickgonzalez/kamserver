@@ -19,4 +19,4 @@ export const providerData = {
     }
 }
     
-export default providers;
+export default providerData;
