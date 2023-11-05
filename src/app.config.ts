@@ -41,7 +41,7 @@ export default config({
         // Messaging                    message/rooms/{roomId}  /message/players/{playerId}
         
         app.get("/providers", async(req, res) => {
-            res.send(providerdata);
+            res.send(JSON.stringify(providerdata));
         });
 
 
