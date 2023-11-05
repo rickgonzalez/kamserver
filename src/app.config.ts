@@ -47,7 +47,8 @@ export default config({
               } 
           }
          
-        app.get("/hello_world", (req, res) => {
+        app.get("/hello_world", async(req, res) => {
+            await getRooms();
             res.send(testval);
         });
 
