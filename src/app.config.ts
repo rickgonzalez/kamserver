@@ -2,7 +2,7 @@ import config from "@colyseus/tools";
 import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { RelayRoom } from "colyseus";
-
+import * as Colyseus from "colyseus.js";
 
 /**
  * Import your Room files
@@ -10,6 +10,7 @@ import { RelayRoom } from "colyseus";
 import { MyRoom } from "./rooms/MyRoom";
 
 export default config({
+  
 
     initializeGameServer: (gameServer) => {
         /**
@@ -24,13 +25,30 @@ export default config({
 
     },
 
+    
     initializeExpress: (app) => {
         /**
          * Bind your custom express routes here:
          * Read more: https://expressjs.com/en/starter/basic-routing.html
          */
+        var client = new Colyseus.Client('localhost:3000');
+        let testval = '';
+        async function getRooms() {
+            try {
+                client.getAvailableRooms("my_room").then(rooms => {
+                    for (var i=0; i<rooms.length; i++) {
+                        console.log("living room", rooms[i].roomId);
+                        testval = rooms[i].roomId;
+                    }
+                  });
+              
+              } catch (e) {
+                console.error("error listing rooms ", e);
+              } 
+          }
+         
         app.get("/hello_world", (req, res) => {
-            res.send("It's time to kick ass and chew bubblegum!");
+            res.send(testval);
         });
 
         /**
