@@ -1,4 +1,6 @@
-{
+
+
+export const providerData = {
     "Data":{
     "providers":[
     {
@@ -17,3 +19,4 @@
     }
 }
     
+export default providers;
