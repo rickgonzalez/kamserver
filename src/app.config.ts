@@ -8,7 +8,7 @@ import providerdata from './components/providers.js';
 /**
  * Import your Room files
  */
-import { MyRoom } from "./rooms/MyRoom";
+import { AzariaRoom } from "./rooms/AzariaRoom";
 
 export default config({
   
@@ -17,7 +17,15 @@ export default config({
         /**
          * Define your room handlers:
          */
-        gameServer.define('my_room', MyRoom);
+       
+        gameServer.define("AzariaRoom", AzariaRoom, {
+            maxClients: 100,
+            allowReconnectionTime: 120,
+            
+        })
+            .filterBy(['mode', 'agegroup']);
+        ;
+     
         // Expose your relayed room
         gameServer.define("Relay", RelayRoom, {
             maxClients: 100,
@@ -33,6 +41,7 @@ export default config({
          * Read more: https://expressjs.com/en/starter/basic-routing.html
          */
         // Request Available Networks   /providers
+        // Get Rooms                    /rooms
         // Creating a game room         /rooms
         // Joining a game               /rooms/{roomId}
         // Deleting a Room              /rooms/{roomId}
@@ -46,19 +55,26 @@ export default config({
 
 
         app.get("/rooms", async(req, res) => {
-            const rooms = await matchMaker.query({ name: "my_room" });
-            //console.log(rooms);
-            res.send(rooms);
+            const rooms = await matchMaker.query({ name: "AzariaRoom" });
+            res.send(JSON.stringify(rooms));
         });
+
+        app.post('/rooms', (req, res) => {
+            res.send(req);
+          })
+
+
 
         /**
          * Use @colyseus/playground
          * (It is not recommended to expose this route in a production environment)
          */
-        if (process.env.NODE_ENV !== "production") {
+        // if (process.env.NODE_ENV !== "production") {
+        //     app.use("/", playground);
+        // }
+        
             app.use("/", playground);
-        }
-
+  
         /**
          * Use @colyseus/monitor
          * It is recommended to protect this route with a password

@@ -4,12 +4,13 @@ const requestIp = require('request-ip');
 import http from "http";
 
 
-export class MyRoom extends Room<MyRoomState> {
+export class AzariaRoom extends Room<MyRoomState> {
   maxClients = 50;
 
   onCreate (options: any) {
     this.setState(new MyRoomState());
-  
+    //We want to update the rooms state and store players ip as playerHost value
+
     this.onMessage("type", (client, message) => {
       //
       // handle "type" message
@@ -28,7 +29,7 @@ export class MyRoom extends Room<MyRoomState> {
 
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
-  
+    
 
   }
 
