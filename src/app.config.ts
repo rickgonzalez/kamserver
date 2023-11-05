@@ -2,7 +2,7 @@ import config from "@colyseus/tools";
 import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { RelayRoom } from "colyseus";
-import * as Colyseus from "colyseus.js";
+import { matchMaker } from "colyseus";
 
 /**
  * Import your Room files
@@ -31,25 +31,11 @@ export default config({
          * Bind your custom express routes here:
          * Read more: https://expressjs.com/en/starter/basic-routing.html
          */
-        var client = new Colyseus.Client('localhost:3000');
-        let testval = '';
-        async function getRooms() {
-            try {
-                client.getAvailableRooms("my_room").then(rooms => {
-                    for (var i=0; i<rooms.length; i++) {
-                        console.log("living room", rooms[i].roomId);
-                        testval = rooms[i].roomId;
-                    }
-                  });
-              
-              } catch (e) {
-                console.error("error listing rooms ", e);
-              } 
-          }
-         
-        app.get("/hello_world", async(req, res) => {
-            await getRooms();
-            res.send(testval);
+       
+        app.get("/rooms", async(req, res) => {
+            const rooms = await matchMaker.query({ name: "my_room" });
+            console.log(rooms);
+            res.send(rooms[0]);
         });
 
         /**
