@@ -3,7 +3,7 @@ import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { RelayRoom } from "colyseus";
 import { matchMaker } from "colyseus";
-import { readFileSync } from 'fs';
+import { readFileSync, readFile} from 'fs';
 
 
 /**
@@ -42,8 +42,12 @@ export default config({
         // Messaging                    message/rooms/{roomId}  /message/players/{playerId}
         
         app.get("/providers", async(req, res) => {
-            let providers = await JSON.parse(readFileSync('./components/providers.json', 'utf-8'));
-            res.send(providers);
+           // let providers =  JSON.parse(readFile('', 'utf-8'));  
+           readFile('./components/providers.json', (err, providers) => {
+                if (err) throw err;
+                res.send(providers.toJSON);
+              });
+  
         });
 
 
