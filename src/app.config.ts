@@ -53,14 +53,15 @@ export default config({
             res.send(JSON.stringify(providerdata));
         });
 
-
         app.get("/rooms", async(req, res) => {
             const rooms = await matchMaker.query({ name: "AzariaRoom" });
             res.send(JSON.stringify(rooms));
         });
 
         app.post('/rooms', (req, res) => {
-            res.send(req);
+            console.log(req);
+
+            res.send('processing');
           })
 
 
