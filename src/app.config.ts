@@ -3,6 +3,8 @@ import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { RelayRoom } from "colyseus";
 import { matchMaker } from "colyseus";
+import { readFileSync } from 'fs';
+
 
 /**
  * Import your Room files
@@ -31,11 +33,24 @@ export default config({
          * Bind your custom express routes here:
          * Read more: https://expressjs.com/en/starter/basic-routing.html
          */
-       
+        // Request Available Networks   /providers
+        // Creating a game room         /rooms
+        // Joining a game               /rooms/{roomId}
+        // Deleting a Room              /rooms/{roomId}
+        // Getting Player Information   /players/{playerId}
+        // Exit Player from room        /rooms/{roomId}/{playerId}
+        // Messaging                    message/rooms/{roomId}  /message/players/{playerId}
+        
+        app.get("/providers", async(req, res) => {
+            let providers = await JSON.parse(readFileSync('./components/providers.json', 'utf-8'));
+            res.send(providers);
+        });
+
+
         app.get("/rooms", async(req, res) => {
             const rooms = await matchMaker.query({ name: "my_room" });
-            console.log(rooms);
-            res.send(rooms[0]);
+            //console.log(rooms);
+            res.send(rooms);
         });
 
         /**
