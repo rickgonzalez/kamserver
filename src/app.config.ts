@@ -63,7 +63,7 @@ export default config({
             let mypost = Object(req.body);
             let roomName = mypost["roomName"];
             let hostIp = mypost["HostIP"]
-            const room = await matchMaker.createRoom(roomName, { ip: hostIp });
+            const room = await matchMaker.joinOrCreate(roomName, { ip: hostIp });
             console.log(room);
             res.json(room);
             
