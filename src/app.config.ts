@@ -50,7 +50,8 @@ export default config({
         // Messaging                    message/rooms/{roomId}  /message/players/{playerId}
         
         app.get("/providers", async(req, res) => {
-            res.send(JSON.stringify(providerdata));
+           // res.send(JSON.stringify(providerdata));
+           res.json(providerdata);
         });
 
         app.get("/rooms", async(req, res) => {
@@ -59,9 +60,8 @@ export default config({
         });
 
         app.post('/rooms', (req, res) => {
-            console.log(req);
-            
-            res.send('processing');
+            res.json({requestBody: req.body})
+  
           })
 
 
