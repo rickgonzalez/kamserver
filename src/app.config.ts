@@ -59,8 +59,9 @@ export default config({
         app.post('/rooms', async(req, res) => {
             let mypost = Object(req.body);
             let roomName = mypost["roomName"];
-            let hostIp = mypost["HostIP"]
-            const room = await matchMaker.joinOrCreate(roomName, { mode: "duo" });
+            let playerName = mypost["playerName"];
+            let hostIp = mypost["playerIp"]
+            const room = await matchMaker.joinOrCreate(roomName, { ip: hostIp , name: playerName });
             console.log(room);
             res.json(room);
             
