@@ -65,6 +65,7 @@ export default config({
             let hostIp = mypost["HostIP"]
             const room = await matchMaker.createRoom(roomName, { ip: hostIp });
             console.log(room);
+            res.json(room);
             
           });
 
