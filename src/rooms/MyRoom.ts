@@ -19,18 +19,13 @@ export class MyRoom extends Room<MyRoomState> {
     });
   }
  onAuth (client: Client, options: any, request: http.IncomingMessage ) {
-     //request previously set to any
-     // request.socket.remoteAddress ? clientIp = request.socket.remoteAddress : clientIp = request.headers['x-forwarded-for'];
-     const clientIp = requestIp.getClientIp(request); 
-      client.send("ip", clientIp);
-      console.dir(request);
-      console.log('request ip-->',clientIp);
+  
       return true;
   }
 
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
-    this.state.playerHost = client.id;
+    
 
   }
 

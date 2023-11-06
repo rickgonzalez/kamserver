@@ -19,12 +19,9 @@ export default config({
          */
        
         gameServer.define("AzariaRoom", AzariaRoom, {
-            maxClients: 100,
-            allowReconnectionTime: 120,
+            maxClients: 100
             
-        })
-            .filterBy(['mode', 'agegroup']);
-        ;
+        });
      
         // Expose your relayed room
         gameServer.define("Relay", RelayRoom, {
