@@ -56,13 +56,17 @@ export default config({
 
         app.get("/rooms", async(req, res) => {
             const rooms = await matchMaker.query({ name: "AzariaRoom" });
-            res.send(JSON.stringify(rooms));
+            res.json(rooms);
         });
 
-        app.post('/rooms', (req, res) => {
-            res.json({requestBody: req.body})
-  
-          })
+        app.post('/rooms', async(req, res) => {
+            let mypost = Object(req.body);
+            let roomName = mypost["roomName"];
+            let hostIp = mypost["HostIP"]
+            const room = await matchMaker.createRoom(roomName, { ip: hostIp });
+            console.log(room);
+            
+          });
 
 
 
