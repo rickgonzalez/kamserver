@@ -1,14 +1,14 @@
 import { Room, Client} from "@colyseus/core";
-import { MyRoomState } from "./schema/AzariaState";
+import { AzariaState } from "./schema/AzariaState";
 const requestIp = require('request-ip');
 import http from "http";
 
 
-export class MyRoom extends Room<MyRoomState> {
+export class MyRoom extends Room<AzariaState> {
   maxClients = 50;
 
   onCreate (options: any) {
-    this.setState(new MyRoomState());
+    this.setState(new AzariaState());
   
 
 
