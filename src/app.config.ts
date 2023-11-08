@@ -1,7 +1,8 @@
 import config from "@colyseus/tools";
+import { Room, Client, ClientArray} from "@colyseus/core";
 import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
-import { RelayRoom } from "colyseus";
+import { ClientState, RelayRoom } from "colyseus";
 import { matchMaker } from "colyseus";
 import providerdata from './components/providers.js';
 
@@ -18,11 +19,11 @@ export default config({
          * Define your room handlers:
          */
        
-        gameServer.define("AzariaRoom", AzariaRoom, {
-            maxClients: 100
-            
+        gameServer
+        .define("AzariaRoom", AzariaRoom, {
+            maxClients: 100, 
         });
-     
+        
         // Expose your relayed room
         gameServer.define("Relay", RelayRoom, {
             maxClients: 100,
@@ -41,9 +42,9 @@ export default config({
         // Get Rooms                    /rooms
         // Creating a game room         /rooms
         // Joining a game               /rooms/{roomId}
-        // Deleting a Room              /rooms/{roomId}
+                // Deleting a Room              /rooms/{roomId}
         // Getting Player Information   /players/{playerId}
-        // Exit Player from room        /rooms/{roomId}/{playerId}
+                 // Exit Player from room        /rooms/{roomId}/{playerId}
         // Messaging                    message/rooms/{roomId}  /message/players/{playerId}
         
         // app.get("/providers", async(req, res) => {
@@ -51,10 +52,12 @@ export default config({
         //    res.json(providerdata);
         // });
 
-        // app.get("/rooms", async(req, res) => {
-        //     const rooms = await matchMaker.query({ name: "AzariaRoom" });
-        //     res.json(rooms);
-        // });
+        app.get("/playerstate", async(req, res) => {
+            // const rooms = await matchMaker.query({ name: "AzariaRoom" });
+            // res.json(rooms);
+            const clients = ClientArray
+            res.json(clients);
+        });
 
         // app.post('/rooms', async(req, res) => {
         //     let mypost = Object(req.body);
