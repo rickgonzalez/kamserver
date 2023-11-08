@@ -1,5 +1,5 @@
 import { Room, Client} from "@colyseus/core";
-import { MyRoomState } from "./schema/MyRoomState";
+import { MyRoomState } from "./schema/AzariaState";
 const requestIp = require('request-ip');
 import http from "http";
 

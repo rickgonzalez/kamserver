@@ -53,10 +53,10 @@ export default config({
         // });
 
         app.get("/playerstate", async(req, res) => {
-            // const rooms = await matchMaker.query({ name: "AzariaRoom" });
-            // res.json(rooms);
-            const clients = AzariaRoom.prototype.clients.entries
-            res.json(clients);
+            const rooms = await matchMaker.query({ name: "AzariaRoom" });
+            res.json(rooms);
+            // const clients = 
+            // res.json(clients);
         });
 
         // app.post('/rooms', async(req, res) => {

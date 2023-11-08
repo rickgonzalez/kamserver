@@ -1,14 +1,13 @@
 import { Room, Client} from "@colyseus/core";
-import { MyRoomState } from "./schema/MyRoomState";
-const requestIp = require('request-ip');
+import { Player,AzariaState } from "./schema/AzariaState";
 import http from "http";
 
 
-export class AzariaRoom extends Room<MyRoomState> {
+export class AzariaRoom extends Room<AzariaState> {
   maxClients = 50;
 
   onCreate (options: any) {
-    this.setState(new MyRoomState());
+    this.setState(new AzariaState());
     //We want to update the rooms state and store players ip as playerHost value
     this.autoDispose = false;
     this.onMessage("type", (client, message) => {
@@ -26,7 +25,12 @@ export class AzariaRoom extends Room<MyRoomState> {
 
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
-    this.state.playerHost = client.id;
+    var myPlayer = new Player();
+      myPlayer.connected = true;
+      myPlayer.sessionId = client.sessionId;
+      myPlayer.ip = "pending";
+      myPlayer.name = "name pending"
+    this.state.Players.add(myPlayer);
 
   }
 
