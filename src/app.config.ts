@@ -30,8 +30,10 @@ export default config({
 
         gameServer
         .define("AzariaRoom", AzariaRoom, {
-            maxClients: 50, 
-        });
+            maxClients: 50,  
+        })
+        .enableRealtimeListing();
+
         
         // Expose your relayed room
         gameServer.define("Relay", RelayRoom, {
