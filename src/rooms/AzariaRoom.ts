@@ -36,6 +36,11 @@ export class AzariaRoom extends Room<AzariaState> {
 
   }
 
+enumPlayers (){
+  return this.state.Players.get(this.roomId);
+}
+
+
   onDispose() {
     console.log("room", this.roomId, "disposing...");
   }

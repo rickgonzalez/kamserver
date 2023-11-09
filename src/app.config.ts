@@ -59,7 +59,7 @@ export default config({
         // });
 
         app.get("/players", async(req, res) => {
-            res.json(AzariaState);
+            res.json(AzariaRoom.prototype.enumPlayers);
             // const reservation = await client.joinById("xxxxxxxxx", {});
             // reservation.room.roomId
         });
