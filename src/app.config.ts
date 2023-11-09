@@ -57,8 +57,7 @@ export default config({
         //    res.json(providerdata);
         // });
 
-        app.get("/playerstate", async(req, res) => {
-            const rooms = await matchMaker.query({ name: "AzariaRoom" });
+        app.get("/playerboo", async(req, res) => {
             res.json(AzariaState);
             // const reservation = await client.joinById("xxxxxxxxx", {});
             // reservation.room.roomId
