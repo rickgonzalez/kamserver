@@ -25,17 +25,15 @@ export class AzariaRoom extends Room<AzariaState> {
 
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
-    var myPlayer = new Player();
-      myPlayer.connected = true;
-      myPlayer.sessionId = client.sessionId;
-      myPlayer.ip = "pending";
-      myPlayer.name = "name pending"
-    this.state.Players.add(myPlayer);
-
+    this.state.createPlayer(client.sessionId);
+    this.state.updatePlayer(client.sessionId,options.ip,options.name);
   }
 
   onLeave (client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
+    this.state.removePlayer(client.sessionId);
+      //Maybe check consented ? reconnect logic here
+
   }
 
   onDispose() {
