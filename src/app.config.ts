@@ -6,14 +6,15 @@ import { ClientState, RelayRoom } from "colyseus";
 import { matchMaker } from "colyseus";
 
 import { Room, Client } from "colyseus";
-import { Player,AzariaState } from "../src/rooms/schema/AzariaState";
+
 
 /**
  * Import your Room files
  */
 import { AzariaRoom } from "./rooms/AzariaRoom";
+import { AzariaState } from "./rooms/schema/AzariaState";
 
-const mystate = AzariaState;
+
 
 
 export default config({
@@ -57,11 +58,11 @@ export default config({
         //    res.json(providerdata);
         // });
 
-        // app.get("/playerboo", async(req, res) => {
-        //     res.json(AzariaState);
-        //     // const reservation = await client.joinById("xxxxxxxxx", {});
-        //     // reservation.room.roomId
-        // });
+        app.get("/players", async(req, res) => {
+            res.json(AzariaState);
+            // const reservation = await client.joinById("xxxxxxxxx", {});
+            // reservation.room.roomId
+        });
 
         // app.post('/rooms', async(req, res) => {
         //     let mypost = Object(req.body);
