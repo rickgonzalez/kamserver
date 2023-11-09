@@ -21,6 +21,7 @@ export class AzariaState extends Schema {
 
   updatePlayer(sessionId: string, ip: string, name: string) {
     this.Players.get(sessionId).ip = ip;
+    this.Players.get(sessionId).connected = true;
     this.Players.get(sessionId).name = name;
 }
 
@@ -32,43 +33,4 @@ export class AzariaState extends Schema {
   }
 
 }
-
-
-// export class StateHandlerRoom extends Room<AzariaState> {
-//   maxClients = 4;
-
-//   onCreate (options: any) {
-//       console.log("StateHandlerRoom created!", options);
-
-//       this.setState(new State());
-
-//       this.onMessage("move", (client, data) => {
-//           console.log("StateHandlerRoom received message from", client.sessionId, ":", data);
-//           this.state.movePlayer(client.sessionId, data);
-//       });
-//   }
-
-//   // onAuth(client, options, req) {
-//   //     return true;
-//   // }
-
-//   onJoin (client: Client) {
-//       // client.send("hello", "world");
-//       console.log(client.sessionId, "joined!");
-//       this.state.createPlayer(client.sessionId);
-//   }
-
-//   onLeave (client) {
-//       console.log(client.sessionId, "left!");
-//       this.state.removePlayer(client.sessionId);
-//   }
-
-//   onDispose () {
-//       console.log("Dispose StateHandlerRoom");
-//   }
-
-// }
-
-
-
 

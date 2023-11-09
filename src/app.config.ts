@@ -1,15 +1,20 @@
 import config from "@colyseus/tools";
-import { Room, Client, ClientArray} from "@colyseus/core";
+
 import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { ClientState, RelayRoom } from "colyseus";
 import { matchMaker } from "colyseus";
-import providerdata from './components/providers.js';
+
+import { Room, Client } from "colyseus";
+import { Player,AzariaState } from "../src/rooms/schema/AzariaState";
 
 /**
  * Import your Room files
  */
 import { AzariaRoom } from "./rooms/AzariaRoom";
+
+const mystate = AzariaState;
+
 
 export default config({
   
@@ -21,7 +26,7 @@ export default config({
        
         gameServer
         .define("AzariaRoom", AzariaRoom, {
-            maxClients: 100, 
+            maxClients: 50, 
         });
         
         // Expose your relayed room
@@ -54,9 +59,9 @@ export default config({
 
         app.get("/playerstate", async(req, res) => {
             const rooms = await matchMaker.query({ name: "AzariaRoom" });
-            res.json(rooms);
-            // const clients = 
-            // res.json(clients);
+            res.json(AzariaState);
+            // const reservation = await client.joinById("xxxxxxxxx", {});
+            // reservation.room.roomId
         });
 
         // app.post('/rooms', async(req, res) => {
