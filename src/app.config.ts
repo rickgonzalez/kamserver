@@ -58,11 +58,11 @@ export default config({
         //    res.json(providerdata);
         // });
 
-        app.get("/players", async(req, res) => {
-            res.json(AzariaRoom.prototype.enumPlayers);
-            // const reservation = await client.joinById("xxxxxxxxx", {});
-            // reservation.room.roomId
-        });
+        // app.get("/players", async(req, res) => {
+        //     res.json(this.state.first);
+        //     // const reservation = await client.joinById("xxxxxxxxx", {});
+        //     // reservation.room.roomId
+        // });
 
         // app.post('/rooms', async(req, res) => {
         //     let mypost = Object(req.body);
