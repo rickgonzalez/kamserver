@@ -2,8 +2,8 @@ import config from "@colyseus/tools";
 
 import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
-import { ClientState, RelayRoom } from "colyseus";
-import { matchMaker } from "colyseus";
+import { ClientState, RelayRoom ,LobbyRoom } from "colyseus";
+import { matchMaker,  } from "colyseus";
 
 import { Room, Client } from "colyseus";
 
@@ -24,7 +24,10 @@ export default config({
         /**
          * Define your room handlers:
          */
-       
+       // Expose the "lobby" room.
+        gameServer
+        .define("lobby", LobbyRoom);
+
         gameServer
         .define("AzariaRoom", AzariaRoom, {
             maxClients: 50, 
