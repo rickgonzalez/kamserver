@@ -57,11 +57,11 @@ export default config({
         //    res.json(providerdata);
         // });
 
-        app.get("/playerboo", async(req, res) => {
-            res.json(AzariaState);
-            // const reservation = await client.joinById("xxxxxxxxx", {});
-            // reservation.room.roomId
-        });
+        // app.get("/playerboo", async(req, res) => {
+        //     res.json(AzariaState);
+        //     // const reservation = await client.joinById("xxxxxxxxx", {});
+        //     // reservation.room.roomId
+        // });
 
         // app.post('/rooms', async(req, res) => {
         //     let mypost = Object(req.body);
