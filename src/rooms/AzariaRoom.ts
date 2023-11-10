@@ -1,5 +1,5 @@
 import { Room, Client} from "@colyseus/core";
-import { Player,AzariaState } from "./schema/AzariaState";
+import { AzariaState } from "./schema/AzariaState";
 
 
 
@@ -26,7 +26,7 @@ export class AzariaRoom extends Room<AzariaState> {
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
     this.state.createPlayer(client.sessionId);
-    this.state.updatePlayer(client.sessionId,options.ip,options.name);
+    //this.state.updatePlayer(client.sessionId,options.ip,options.name);
   }
 
   onLeave (client: Client, consented: boolean) {
