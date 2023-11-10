@@ -26,7 +26,9 @@ export class AzariaRoom extends Room<AzariaState> {
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
     this.state.createPlayer(client.sessionId);
-    //this.state.updatePlayer(client.sessionId,options.ip,options.name);
+    
+    this.state.updatePlayer(client.sessionId,options.ip,options.name,options.playerId);
+    console.log(this.state.toJSON());
   }
 
   onLeave (client: Client, consented: boolean) {
@@ -37,7 +39,7 @@ export class AzariaRoom extends Room<AzariaState> {
   }
 
 enumPlayers (){
-  return this.state.Players.get(this.roomId);
+  return this.state.players.get(this.roomId);
 }
 
 
