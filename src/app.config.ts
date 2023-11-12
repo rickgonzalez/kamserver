@@ -91,7 +91,7 @@ export default config({
             //room = reservation.room;
             //players = AzariaRoom.prototype.enumPlayersByRoom(room);
 
-            res.json({ AzariaRoom });
+            res.json(AzariaRoom);
 
         });
 
