@@ -29,7 +29,11 @@ export class AzariaState extends Schema {
     this.players.get(sessionId).playerId = playerId;
 }
 
-
+  enumPlayers(roomId: string){
+    this.players.forEach(function (player) {
+      console.log(player.sessionId);
+    });
+  }
 
   removePlayer(sessionId: string) {
     this.players.get(sessionId).connected = false;

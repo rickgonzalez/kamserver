@@ -7,12 +7,13 @@ import { matchMaker,  } from "colyseus";
 
 import { Room, Client } from "colyseus";
 import {providerData} from "./components/providers"
+//import { AzariaState } from "./rooms/schema/AzariaState"
 
 /**
  * Import your Room files
  */
 import { AzariaRoom } from "./rooms/AzariaRoom";
-import { AzariaState } from "./rooms/schema/AzariaState";
+//import { AzariaState } from "./rooms/schema/AzariaState";
 
 
 
@@ -71,22 +72,14 @@ export default config({
                     console.error("error listing rooms ", e);
                     res.json({ 'error listing rooms':e });
                 } 
-               
-               
-                rooms.forEach(function (value) {
-                    console.log(value.roomId);
-                    let mob = ClientState.JOINED
-                    console.log(mob.toString);
-
-                  }); 
-
 
                 res.json({ rooms });
         });
 
 
         app.get("/kam/players/:roomId", async(req, res) => {
-
+            var room : any
+            var players: any
             var roomid = req.params.roomId;
             var reservation;
                 try {
@@ -95,9 +88,11 @@ export default config({
                     console.error("error listing players ", e);
                     res.json({ 'error listing players':e });
                 } 
-                var players = Client
-                
-                res.json({ rooms });
+            //room = reservation.room;
+            //players = AzariaRoom.prototype.enumPlayersByRoom(room);
+
+            res.json({ AzariaRoom });
+
         });
 
 

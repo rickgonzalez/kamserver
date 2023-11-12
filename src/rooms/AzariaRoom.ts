@@ -37,8 +37,11 @@ export class AzariaRoom extends Room<AzariaState> {
 
   }
 
-enumPlayers (){
-  return this.state.players.get(this.roomId);
+enumPlayersByRoom (room: Room){
+  
+  return room.state.players
+
+  //return this.state.players.get(this.roomId);
 }
 
 
