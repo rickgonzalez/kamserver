@@ -71,6 +71,32 @@ export default config({
                     console.error("error listing rooms ", e);
                     res.json({ 'error listing rooms':e });
                 } 
+               
+               
+                rooms.forEach(function (value) {
+                    console.log(value.roomId);
+                    let mob = ClientState.JOINED
+                    console.log(mob.toString);
+
+                  }); 
+
+
+                res.json({ rooms });
+        });
+
+
+        app.get("/kam/players/:roomId", async(req, res) => {
+
+            var roomid = req.params.roomId;
+            var reservation;
+                try {
+                     reservation = await matchMaker.joinById(roomid, {playerName: 'auditor'});
+                } catch (e) {
+                    console.error("error listing players ", e);
+                    res.json({ 'error listing players':e });
+                } 
+                var players = Client
+                
                 res.json({ rooms });
         });
 
