@@ -69,9 +69,9 @@ export default config({
                      rooms = await matchMaker.query({ name: "AzariaRoom"});
                 } catch (e) {
                     console.error("error listing rooms ", e);
-                    return Response.json({ 'error listing rooms':e });
+                    res.json({ 'error listing rooms':e });
                 } 
-                return Response.json({ rooms });
+                res.json({ rooms });
         });
 
 
