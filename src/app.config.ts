@@ -6,7 +6,7 @@ import { ClientState, RelayRoom ,LobbyRoom } from "colyseus";
 import { matchMaker,  } from "colyseus";
 
 import { Room, Client } from "colyseus";
-
+import {providerData} from "./components/providers"
 
 /**
  * Import your Room files
@@ -58,10 +58,28 @@ export default config({
                  // Exit Player from room        /rooms/{roomId}/{playerId}
         // Messaging                    message/rooms/{roomId}  /message/players/{playerId}
         
-        // app.get("/providers", async(req, res) => {
-        //    // res.send(JSON.stringify(providerdata));
-        //    res.json(providerdata);
-        // });
+        app.get("/kam/providers", async(req, res) => {
+           // res.send(JSON.stringify(providerdata));
+           res.json(providerData);
+        });
+
+        app.get("/kam/rooms", async(req, res) => {
+            var rooms;
+                try {
+                     rooms = await matchMaker.query({ name: "AzariaRoom"});
+                } catch (e) {
+                    console.error("error listing rooms ", e);
+                    return Response.json({ 'error listing rooms':e });
+                } 
+                return Response.json({ rooms });
+        });
+
+
+
+        
+
+
+
 
         // app.get("/players", async(req, res) => {
         //     res.json(this.state.first);
