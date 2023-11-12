@@ -13,6 +13,7 @@ import {providerData} from "./components/providers"
  * Import your Room files
  */
 import { AzariaRoom } from "./rooms/AzariaRoom";
+import { AzariaState } from "./rooms/schema/AzariaState";
 //import { AzariaState } from "./rooms/schema/AzariaState";
 
 
@@ -91,7 +92,7 @@ export default config({
             //room = reservation.room;
             //players = AzariaRoom.prototype.enumPlayersByRoom(room);
 
-            res.json(AzariaRoom);
+            res.json(AzariaRoom.prototype.state.players);
 
         });
 
