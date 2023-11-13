@@ -4,12 +4,19 @@ import { AzariaState } from "./schema/AzariaState";
 
 
 export class AzariaRoom extends Room<AzariaState> {
-  maxClients = 50;
 
+  
+  maxClients = 50;
+ 
   onCreate (options: any) {
     this.setState(new AzariaState());
     //We want to update the rooms state and store players ip as playerHost value
     this.autoDispose = false;
+    this.setSeatReservationTime (30);
+
+
+
+
     this.onMessage("type", (client, message) => {
       //
       // handle "type" message
@@ -36,14 +43,6 @@ export class AzariaRoom extends Room<AzariaState> {
       //Maybe check consented ? reconnect logic here
 
   }
-
-enumPlayersByRoom (room: Room){
-  
-  return room.state.players
-
-  //return this.state.players.get(this.roomId);
-}
-
 
   onDispose() {
     console.log("room", this.roomId, "disposing...");
