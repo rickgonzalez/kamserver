@@ -62,7 +62,15 @@ export default config({
         
         app.get("/kam/providers", async(req, res) => {
            // res.send(JSON.stringify(providerdata));
-           res.json(providerData);
+           var Applications;
+                try {
+                     Applications = await matchMaker.query({ name: "Azaria"});
+                } catch (e) {
+                    console.error("error listing providers ", e);
+                    res.json({ 'error listing providers':e });
+                } 
+
+                res.json(providerData);
         });
 
         app.get("/kam/rooms", async(req, res) => {
