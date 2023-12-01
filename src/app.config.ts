@@ -89,6 +89,7 @@ export default config({
             var myroomId: string
             myroomId = req.body.myroomId;
             mysessionId = req.body.mysessionId;
+            console.dir("request body", req.body);
             
                 try {
                     await matchMaker.remoteRoomCall(myroomId, "_onJoin", [{'sessionId': mysessionId }]);
