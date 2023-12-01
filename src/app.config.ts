@@ -100,7 +100,7 @@ export default config({
                 } 
 
                 //return something in the response
-                res.json({ "result":'accepted' });
+                res.json({"sessionId":mysessionId});
         });
 
         app.get("/kam/players/:roomId", async(req, res) => {
