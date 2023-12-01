@@ -51,9 +51,7 @@ export default config({
          * Bind your custom express routes here:
          * Read more: https://expressjs.com/en/starter/basic-routing.html
          */
-        // Request Available Networks   /providers
-        // Get Rooms                    /rooms
-        // Creating a game room         /rooms
+       
         // Joining a game               /rooms/{roomId}
                 // Deleting a Room              /rooms/{roomId}
         // Getting Player Information   /players/{playerId}
@@ -85,6 +83,24 @@ export default config({
                 res.json({ rooms });
         });
 
+        //post the session back to accept the reservation
+        app.post("/kam/rooms/acceptReservation", async(req, res) => {
+            var mysessionId : string
+            var myroomId: string
+            myroomId = req.body.myroomId;
+            mysessionId = req.body.mysessionId;
+            
+                try {
+                    await matchMaker.remoteRoomCall(myroomId, "_onJoin", [{'sessionId': mysessionId }]);
+
+                } catch (e) {
+                    console.error("error accepting reservation ", e);
+                    res.json({ 'error accepting reservation':e });
+                } 
+
+                //return something in the response
+                res.json({ "result":'accepted' });
+        });
 
         app.get("/kam/players/:roomId", async(req, res) => {
             var room : any
