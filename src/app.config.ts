@@ -93,13 +93,10 @@ export default config({
             console.log("request body", req.body);
             
                 try {
-                   
-                    // console.log('client',client);
-                    await matchMaker.remoteRoomCall(myroomId, "_onLeave", [{sessionId: mysessionId}]);
+                     // console.log('client',client);
+                  //  await matchMaker.remoteRoomCall(myroomId, "_onLeave", [{sessionId: mysessionId}]);
                     await matchMaker.remoteRoomCall(myroomId, "_onJoin", [{sessionId: mysessionId}]);
-                  
-
-
+                 
                 } catch (e) {
                     console.error("error accepting reservation ", e);
                     res.json({ 'error accepting reservation':e });
