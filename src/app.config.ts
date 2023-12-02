@@ -93,7 +93,9 @@ export default config({
             console.log("request body", req.body);
             
                 try {
-                    await matchMaker.remoteRoomCall(myroomId, "_onJoin", [{sessionId:mysessionId}]);
+                    const client = AzariaRoom.prototype.clients.getById(mysessionId);
+                    console.log('client',client);
+                    await matchMaker.remoteRoomCall(myroomId, "_onJoin", [client]);
                   
 
 

@@ -12,7 +12,7 @@ export class AzariaRoom extends Room<AzariaState> {
     this.setState(new AzariaState());
     //We want to update the rooms state and store players ip as playerHost value
     this.autoDispose = false;
-    this.setSeatReservationTime (30);
+    this.setSeatReservationTime (60);
 
 
 
