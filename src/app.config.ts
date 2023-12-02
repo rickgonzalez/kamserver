@@ -89,10 +89,13 @@ export default config({
             var myroomId: string
             myroomId = req.body.myroomId;
             mysessionId = req.body.mysessionId;
-            console.dir("request body", req.body);
+            
+            console.log("request body", req.body);
             
                 try {
-                    await matchMaker.remoteRoomCall(myroomId, "_onJoin", [{"sessionId":mysessionId}]);
+                    await matchMaker.remoteRoomCall(myroomId, "_onJoin", [{sessionId:mysessionId}]);
+                  
+
 
                 } catch (e) {
                     console.error("error accepting reservation ", e);
