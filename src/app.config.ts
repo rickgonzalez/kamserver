@@ -45,7 +45,7 @@ export default config({
 
     },
 
-    
+ 
     initializeExpress: (app) => {
         /**
          * Bind your custom express routes here:
