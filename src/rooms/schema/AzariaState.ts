@@ -26,11 +26,7 @@ export class AzariaState extends Schema {
 
   }
   createRoomDetail(fname: string) {
-    let mydetail = {
-      "friendlyName":fname
-    }
-
-    this.roomdetail.set(JSON.stringify(mydetail), new RoomDetail());
+    this.roomdetail.set(fname, new RoomDetail());
 
   }
 
