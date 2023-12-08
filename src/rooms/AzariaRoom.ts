@@ -11,7 +11,12 @@ export class AzariaRoom extends Room<AzariaState> {
   onCreate (options: any) {
     this.setState(new AzariaState());
     //We want to update the rooms state and store players ip as playerHost value
-    this.state.createRoomDetail(options.fname);
+    var myroomdetail = new Object();
+    myroomdetail = {
+      fname: options.fname
+    }
+  
+    this.state.createRoomDetail(JSON.stringify(myroomdetail));
     this.setSeatReservationTime (300);
     this.autoDispose = true;
    
