@@ -4,9 +4,9 @@ import { Schema, MapSchema, CollectionSchema, Context, type } from "@colyseus/sc
 
 export class Player extends Schema {
   @type("string") sessionId: string;
-  @type("string") name: string;
+  @type("string") playerName: string;
   @type("string") playerId: string;
-  @type("string") ip: string;
+  @type("string") playerIp: string;
   @type("boolean") connected: boolean;
 }
 export class RoomDetail extends Schema {
@@ -30,9 +30,9 @@ export class AzariaState extends Schema {
 
   }
 
-  updatePlayer(sessionId: string, ip: string, name: string, playerId:string) {
-    this.players.get(sessionId).ip = ip;
-    this.players.get(sessionId).name = name;
+  updatePlayer(sessionId: string, playerIp: string, playerName: string, playerId:string) {
+    this.players.get(sessionId).playerIp = playerIp;
+    this.players.get(sessionId).playerName = playerName;
     this.players.get(sessionId).connected = true;
     this.players.get(sessionId).playerId = playerId;
 }
