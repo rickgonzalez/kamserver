@@ -10,7 +10,7 @@ export class Player extends Schema {
   @type("boolean") connected: boolean;
 }
 export class RoomDetail extends Schema {
-  @type("string") fname: string; //the first players friendly room name
+  @type("string") friendlyName: string; //the first players friendly room name
 }
 
 export class AzariaState extends Schema {
@@ -26,7 +26,11 @@ export class AzariaState extends Schema {
 
   }
   createRoomDetail(fname: string) {
-    this.roomdetail.set(fname, new RoomDetail());
+    let mydetail = {
+      "friendlyName":fname
+    }
+
+    this.roomdetail.set(JSON.stringify(mydetail), new RoomDetail());
 
   }
 
