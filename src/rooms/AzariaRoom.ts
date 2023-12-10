@@ -20,14 +20,12 @@ export class AzariaRoom extends Room<AzariaState> {
     this.autoDispose = false;
    
 
-
-
-
-    this.onMessage("type", (client, message) => {
-      //
-      // handle "type" message
-      //
+    this.onMessage("message", (client, message) => {
+      console.log("ChatRoom received message from", client.sessionId, ":", message);
+      this.broadcast("messages", `(${client.sessionId}) ${message}`);
     });
+
+
   }
  onAuth (client: Client, options: any, request: any) {
      //request previously set to any http.IncomingMessage 
@@ -41,12 +39,14 @@ export class AzariaRoom extends Room<AzariaState> {
     this.state.createPlayer(client.sessionId);
     this.state.updatePlayer(client.sessionId,options.ip,options.name,options.playerId);
     console.log(this.state.toJSON());
+    this.broadcast("messages", `${ client.sessionId } joined.`);
   }
 
   onLeave (client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
     this.state.removePlayer(client.sessionId);
       //Maybe check consented ? reconnect logic here
+      this.broadcast("messages", `${ client.sessionId } left.`);
 
   }
 
