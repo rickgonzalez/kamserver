@@ -25,6 +25,11 @@ export class AzariaRoom extends Room<AzariaState> {
       this.broadcast("messages", `(${client.sessionId}) ${message.message}`);
      
     });
+    this.onMessage("chat",(client, message) => {
+      // console.log("ChatRoom received message from", client.sessionId, ":", message.message);
+      this.broadcast("chat", `(${options.name}) ${message.message}`);
+     
+    });
 
 
   }
