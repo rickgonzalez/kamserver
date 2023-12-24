@@ -1,5 +1,5 @@
 import { Room, Client} from "@colyseus/core";
-import { AzariaState } from "./schema/AzariaState";
+import { AzariaState, Player } from "./schema/AzariaState";
 
 
 
@@ -20,9 +20,10 @@ export class AzariaRoom extends Room<AzariaState> {
     this.autoDispose = false;
    
 
-    this.onMessage("messages", (client, message) => {
+    this.onMessage("messages",(client, message) => {
       console.log("ChatRoom received message from", client.sessionId, ":", message);
-      this.broadcast("messages", `(${client.sessionId}) ${message}`);
+      this.broadcast("messages", `(${client.sessionId}) ${message.toJSON}`);
+     
     });
 
 
