@@ -17,7 +17,7 @@ export class AzariaRoom extends Room<AzariaState> {
     this.roomId = myIdString;
     this.state.createRoomDetail(options.fname);
     this.setSeatReservationTime (300);
-    this.autoDispose = false;
+    this.autoDispose = true;
    
 
     this.onMessage("messages",(client, message) => {
