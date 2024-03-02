@@ -8,6 +8,8 @@ export class Player extends Schema {
   @type("string") playerId: string;
   @type("string") playerIp: string;
   @type("boolean") connected: boolean;
+  @type([ "string" ]) candidates:Array<string>;
+ 
 }
 export class RoomDetail extends Schema {
   @type("string") friendlyName: string; //the first players friendly room name
@@ -30,11 +32,12 @@ export class AzariaState extends Schema {
 
   }
 
-  updatePlayer(sessionId: string, playerIp: string, playerName: string, playerId:string) {
+  updatePlayer(sessionId: string, playerIp: string, playerName: string, playerId:string, candidates:[string]) {
     this.players.get(sessionId).playerIp = playerIp;
     this.players.get(sessionId).playerName = playerName;
     this.players.get(sessionId).connected = true;
     this.players.get(sessionId).playerId = playerId;
+    this.players.get(sessionId).candidates = candidates;
 }
 
   enumPlayers(roomId: string){

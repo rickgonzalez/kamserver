@@ -42,7 +42,7 @@ export class AzariaRoom extends Room<AzariaState> {
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
     this.state.createPlayer(client.sessionId);
-    this.state.updatePlayer(client.sessionId,options.ip,options.name,options.playerId);
+    this.state.updatePlayer(client.sessionId,options.ip,options.name,options.playerId,options.candidates);
     console.log(this.state.toJSON());
    // this.broadcast("messages", `${ client.sessionId } joined.`);
     this.broadcast("messages", `${ options.name } joined.`);
