@@ -31,8 +31,12 @@ export class AzariaState extends Schema {
   }
 
   //(options.fname, myIdString, options.playerId, options.name);
-  createRoomDetail(roomId: string) {
+  createRoomDetail(roomId: string, fname: string, playerName: string, playerId: string) {
     this.roomdetail.set(roomId,  new RoomDetail());
+    this.roomdetail.get(roomId).friendlyName = fname;
+    this.roomdetail.get(roomId).hostName = playerName;
+    this.roomdetail.get(roomId).hostId = playerId;
+
   }
 
   updatePlayer(sessionId: string, playerIp: string, playerName: string, playerId:string, candidates:[string]) {
