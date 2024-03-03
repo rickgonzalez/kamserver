@@ -16,6 +16,8 @@ export class RoomDetail extends Schema {
   @type("string") friendlyName: string;
   @type("string") hostId: string; 
   @type("string") hostName: string; 
+  @type("number") hostingStart:number;
+  @type("string") hostingType:string;
 }
 
 export class AzariaState extends Schema {
@@ -36,7 +38,9 @@ export class AzariaState extends Schema {
     this.roomdetail.get(roomId).friendlyName = fname;
     this.roomdetail.get(roomId).hostName = playerName;
     this.roomdetail.get(roomId).hostId = playerId;
-
+    let mystart = Date.now()
+    this.roomdetail.get(roomId).hostingStart = mystart;
+    this.roomdetail.get(roomId).hostingType = 'transferring';
   }
 
   updatePlayer(sessionId: string, playerIp: string, playerName: string, playerId:string, candidates:[string]) {
