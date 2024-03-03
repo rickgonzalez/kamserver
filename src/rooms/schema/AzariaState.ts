@@ -15,7 +15,7 @@ export class RoomDetail extends Schema {
   @type("string") roomId: string; 
   @type("string") friendlyName: string;
   @type("string") hostId: string; 
-  @type("string") playerName: string; 
+  @type("string") hostName: string; 
 }
 
 export class AzariaState extends Schema {
@@ -34,7 +34,7 @@ export class AzariaState extends Schema {
   createRoomDetail(roomId: string, fname: string, playerName: string, playerId: string) {
     this.roomdetail.set(roomId,  new RoomDetail());
     this.roomdetail.get(roomId).friendlyName = fname;
-    this.roomdetail.get(roomId).playerName = playerName;
+    this.roomdetail.get(roomId).hostName = playerName;
     this.roomdetail.get(roomId).hostId = playerId;
 
   }
