@@ -15,7 +15,7 @@ export class AzariaRoom extends Room<AzariaState> {
   
     let myIdString = this.roomId + options.fname ;
     this.roomId = myIdString;
-    this.state.createRoomDetail(options.fname);
+    this.state.createRoomDetail(myIdString);
     this.setSeatReservationTime (300);
     this.autoDispose = true;
    

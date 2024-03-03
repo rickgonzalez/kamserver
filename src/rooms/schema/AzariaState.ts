@@ -12,7 +12,10 @@ export class Player extends Schema {
  
 }
 export class RoomDetail extends Schema {
-  @type("string") friendlyName: string; //the first players friendly room name
+  @type("string") roomId: string; 
+  @type("string") friendlyName: string;
+  @type("string") hostId: string; 
+  @type("string") hostName: string; 
 }
 
 export class AzariaState extends Schema {
@@ -25,11 +28,11 @@ export class AzariaState extends Schema {
 
   createPlayer(sessionId: string) {
     this.players.set(sessionId, new Player());
-
   }
-  createRoomDetail(fname: string) {
-    this.roomdetail.set(fname, new RoomDetail());
 
+  //(options.fname, myIdString, options.playerId, options.name);
+  createRoomDetail(roomId: string) {
+    this.roomdetail.set(roomId,  new RoomDetail());
   }
 
   updatePlayer(sessionId: string, playerIp: string, playerName: string, playerId:string, candidates:[string]) {
