@@ -51,7 +51,9 @@ export class AzariaRoom extends Room<AzariaState> {
   onLeave (client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
     this.state.removePlayer(client.sessionId);
-      //Maybe check consented ? reconnect logic here
+      if(!consented){
+        this.state.createPlayer(client.sessionId);
+      }
       this.broadcast("messages", `${ client.sessionId } left.`);
 
   }

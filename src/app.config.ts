@@ -33,6 +33,7 @@ export default config({
         gameServer
         .define("AzariaRoom", AzariaRoom, {
             maxClients: 50,  
+            allowReconnectionTime: 120
         })
         .enableRealtimeListing();
 
