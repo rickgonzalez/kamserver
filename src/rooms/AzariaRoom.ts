@@ -49,15 +49,26 @@ export class AzariaRoom extends Room<AzariaState> {
     this.broadcast("messages", `${ options.name } joined.`);
   }
 
-  onLeave (client: Client, consented: boolean) {
-    console.log(client.sessionId, "left!");
-    this.state.removePlayer(client.sessionId);
-      if(!consented){
-        this.allowReconnection(client, 60 * 60 * 6);
-        this.state.createPlayer(client.sessionId);
+  async onLeave (client: Client, consented: boolean) {
+    // flag client as inactive for other users
+    this.state.players.get(client.sessionId).connected = false;
+  
+    try {
+      if (consented) {
+          throw new Error("consented leave");
       }
-      this.broadcast("messages", `${ client.sessionId } left.`);
-
+  
+      // allow disconnected client to reconnect into this room until 200 seconds
+      await this.allowReconnection(client, 200);
+  
+      // client returned! let's re-activate it.
+      this.state.players.get(client.sessionId).connected = true;
+  
+    } catch (e) {
+  
+      // 20 seconds expired. let's remove the client.
+      this.state.players.delete(client.sessionId);
+    }
   }
   
 
