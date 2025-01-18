@@ -8,6 +8,7 @@ export class Player extends Schema {
   @type("string") playerId: string;
   @type("string") playerIp: string;
   @type("boolean") connected: boolean;
+  @type("string") reconnectTok: string;
   @type([ "string" ]) candidates:Array<string>;
  
 }
@@ -43,9 +44,10 @@ export class AzariaState extends Schema {
     this.roomdetail.get(roomId).hostingType = 'transferring';
   }
 
-  updatePlayer(sessionId: string, playerIp: string, playerName: string, playerId:string, candidates:[string]) {
+  updatePlayer(sessionId: string, playerIp: string, playerName: string, reconnectTok:string, playerId:string, candidates:[string]) {
     this.players.get(sessionId).playerIp = playerIp;
     this.players.get(sessionId).playerName = playerName;
+    this.players.get(sessionId).reconnectTok = reconnectTok;
     this.players.get(sessionId).connected = true;
     this.players.get(sessionId).playerId = playerId;
     this.players.get(sessionId).candidates = candidates;

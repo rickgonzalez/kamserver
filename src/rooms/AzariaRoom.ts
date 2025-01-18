@@ -1,5 +1,6 @@
 import { Room, Client} from "@colyseus/core";
 import { AzariaState, Player } from "./schema/AzariaState";
+import { reconnect } from "@colyseus/core/build/MatchMaker";
 
 
 
@@ -42,7 +43,7 @@ export class AzariaRoom extends Room<AzariaState> {
   onJoin (client: Client, options: any) {
     console.log(client.sessionId, "joined!");
     this.state.createPlayer(client.sessionId);
-    this.state.updatePlayer(client.sessionId,options.ip,options.name,options.playerId,options.candidates);
+    this.state.updatePlayer(client.sessionId,options.ip,options.name,client._reconnectionToken, options.playerId,options.candidates);
     console.log(this.state.toJSON());
    // this.broadcast("messages", `${ client.sessionId } joined.`);
     this.broadcast("messages", `${ options.name } joined.`);
@@ -52,11 +53,13 @@ export class AzariaRoom extends Room<AzariaState> {
     console.log(client.sessionId, "left!");
     this.state.removePlayer(client.sessionId);
       if(!consented){
+        this.allowReconnection(client, 60 * 60 * 6);
         this.state.createPlayer(client.sessionId);
       }
       this.broadcast("messages", `${ client.sessionId } left.`);
 
   }
+  
 
   onDispose() {
     console.log("room", this.roomId, "disposing...");
