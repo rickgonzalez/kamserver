@@ -8,7 +8,7 @@ import { matchMaker,  } from "colyseus";
 import { Room, Client } from "colyseus";
 import {providerData} from "./components/providers"
 //import { AzariaState } from "./rooms/schema/AzariaState"
-
+import { WebSocketTransport } from "@colyseus/ws-transport"
 /**
  * Import your Room files
  */
@@ -45,9 +45,15 @@ export default config({
             allowReconnectionTime: 120
         });
 
-    },
-
- 
+    }, 
+    initializeTransport: function(opts) {
+        return new WebSocketTransport({
+          ...opts,
+          pingInterval: 5000,
+          pingMaxRetries: 24,
+          maxPayload: 4096, 
+        });
+      },
     initializeExpress: (app) => {
         /**
          * Bind your custom express routes here:
@@ -128,30 +134,6 @@ export default config({
 
 
 
-        
-
-
-
-
-        // app.get("/players", async(req, res) => {
-        //     res.json(this.state.first);
-        //     // const reservation = await client.joinById("xxxxxxxxx", {});
-        //     // reservation.room.roomId
-        // });
-
-        // app.post('/rooms', async(req, res) => {
-        //     let mypost = Object(req.body);
-        //     let roomName = mypost["roomName"];
-        //     let playerName = mypost["playerName"];
-        //     let hostIp = mypost["playerIp"]
-        //     const room = await matchMaker.joinOrCreate(roomName, { ip: hostIp , name: playerName });
-        //     console.log(room);
-        //     res.json(room);
-            
-        //   });
-
-
-
         /**
          * Use @colyseus/playground
          * (It is not recommended to expose this route in a production environment)
@@ -179,7 +161,3 @@ export default config({
 });
 
 
-
-
-
-// [{'sessionId': mysessionId }]
