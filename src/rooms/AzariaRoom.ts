@@ -10,7 +10,7 @@ export class AzariaRoom extends Room<AzariaState> {
   maxClients = 50;
  
   onCreate (options: any) {
-    if (options.password) {
+    if (options.roomtoken) {
       this.setPrivate();
     }
    
