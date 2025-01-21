@@ -36,6 +36,7 @@ export default config({
             allowReconnectionTime:  60 * 60 * 2,
 
         })
+        .filterBy(['password'])
         .enableRealtimeListing();
 
         

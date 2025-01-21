@@ -10,6 +10,10 @@ export class AzariaRoom extends Room<AzariaState> {
   maxClients = 50;
  
   onCreate (options: any) {
+    if (options.password) {
+      this.setPrivate();
+    }
+   
     this.setState(new AzariaState());
     //We want to update the rooms state and store players ip as playerHost value
     
