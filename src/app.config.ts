@@ -14,6 +14,7 @@ import { WebSocketTransport } from "@colyseus/ws-transport"
  */
 import { AzariaRoom } from "./rooms/AzariaRoom";
 import { AzariaState } from "./rooms/schema/AzariaState";
+import { ClickTaleRoom } from "./rooms/ClickTaleRoom";
 //import { AzariaState } from "./rooms/schema/AzariaState";
 
 
@@ -39,7 +40,15 @@ export default config({
         .filterBy(['roomtoken'])
         .enableRealtimeListing();
 
-        
+        gameServer
+        .define("ClickTaleRoom", ClickTaleRoom, {
+            maxClients: 10,  
+            allowReconnectionTime:  60 * 60 * 2,
+
+        })
+        .filterBy(['roomtoken'])
+        .enableRealtimeListing();
+
         // Expose your relayed room
         gameServer.define("Relay", RelayRoom, {
             maxClients: 100,
